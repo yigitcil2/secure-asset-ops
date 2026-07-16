@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6CD155A9-F968-4647-91AC-31CC909FA8D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{704D5390-06C1-49B5-9928-1D1B0F2C961C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{398C5DE6-26E4-4A81-BAD1-F0EB8390FA66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ADR", "ADR", "{A15B45C6-3910-48E0-958B-4C2687738AEF}"
+	ProjectSection(SolutionItems) = preProject
+		ADR-001-Modular-Monolith.md = ADR-001-Modular-Monolith.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{354F124A-4C40-433D-9A9D-BDD85D2991AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureAssetOps.Domain", "src\SecureAssetOps.Domain\SecureAssetOps.Domain.csproj", "{99E13CE1-6F8C-4895-B3B0-F3C385A6E022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureAssetOps.Application", "src\SecureAssetOps.Application\SecureAssetOps.Application.csproj", "{C7367880-8E86-4148-BC6D-425938F41C56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureAssetOps.Infrastructure", "src\SecureAssetOps.Infrastructure\SecureAssetOps.Infrastructure.csproj", "{8E7C880D-00BB-48F9-AA5F-CB81A49397DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureAssetOps.UnitTests", "tests\SecureAssetOps.UnitTests\SecureAssetOps.UnitTests.csproj", "{7479272D-E9F9-4499-A424-68FD3734B3FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureAssetOps.IntegrationTests", "tests\SecureAssetOps.IntegrationTests\SecureAssetOps.IntegrationTests.csproj", "{0C9E3119-F91C-401D-AB25-BE32D99CB74C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureAssetOps.API", "src\SecureAssetOps.API\SecureAssetOps.API.csproj", "{A55817C6-4382-4FA1-8577-5631899BC759}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99E13CE1-6F8C-4895-B3B0-F3C385A6E022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E13CE1-6F8C-4895-B3B0-F3C385A6E022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E13CE1-6F8C-4895-B3B0-F3C385A6E022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E13CE1-6F8C-4895-B3B0-F3C385A6E022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7367880-8E86-4148-BC6D-425938F41C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7367880-8E86-4148-BC6D-425938F41C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7367880-8E86-4148-BC6D-425938F41C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7367880-8E86-4148-BC6D-425938F41C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E7C880D-00BB-48F9-AA5F-CB81A49397DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E7C880D-00BB-48F9-AA5F-CB81A49397DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E7C880D-00BB-48F9-AA5F-CB81A49397DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E7C880D-00BB-48F9-AA5F-CB81A49397DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7479272D-E9F9-4499-A424-68FD3734B3FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7479272D-E9F9-4499-A424-68FD3734B3FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7479272D-E9F9-4499-A424-68FD3734B3FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7479272D-E9F9-4499-A424-68FD3734B3FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C9E3119-F91C-401D-AB25-BE32D99CB74C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C9E3119-F91C-401D-AB25-BE32D99CB74C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C9E3119-F91C-401D-AB25-BE32D99CB74C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C9E3119-F91C-401D-AB25-BE32D99CB74C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A55817C6-4382-4FA1-8577-5631899BC759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55817C6-4382-4FA1-8577-5631899BC759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55817C6-4382-4FA1-8577-5631899BC759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55817C6-4382-4FA1-8577-5631899BC759}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{99E13CE1-6F8C-4895-B3B0-F3C385A6E022} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C7367880-8E86-4148-BC6D-425938F41C56} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{8E7C880D-00BB-48F9-AA5F-CB81A49397DC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{7479272D-E9F9-4499-A424-68FD3734B3FE} = {6CD155A9-F968-4647-91AC-31CC909FA8D0}
+		{0C9E3119-F91C-401D-AB25-BE32D99CB74C} = {6CD155A9-F968-4647-91AC-31CC909FA8D0}
+		{A55817C6-4382-4FA1-8577-5631899BC759} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F263D4E6-7AD6-4762-B2FD-FA44F944A768}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SecureAssetOps.Application\SecureAssetOps.Application.csproj" />
+    <ProjectReference Include="..\SecureAssetOps.Infrastructure\SecureAssetOps.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
