@@ -1,0 +1,39 @@
+[1mdiff --git a/src/SecureAssetOps.Domain/Class1.cs b/src/SecureAssetOps.Domain/Class1.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 50d8394..0000000[m
+[1m--- a/src/SecureAssetOps.Domain/Class1.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,7 +0,0 @@[m
+[31m-﻿namespace SecureAssetOps.Domain[m
+[31m-{[m
+[31m-    public class Class1[m
+[31m-    {[m
+[31m-[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/src/SecureAssetOps.Domain/SecureAssetOps.Domain.csproj b/src/SecureAssetOps.Domain/SecureAssetOps.Domain.csproj[m
+[1mindex fa71b7a..28bd798 100644[m
+[1m--- a/src/SecureAssetOps.Domain/SecureAssetOps.Domain.csproj[m
+[1m+++ b/src/SecureAssetOps.Domain/SecureAssetOps.Domain.csproj[m
+[36m@@ -6,4 +6,8 @@[m
+     <Nullable>enable</Nullable>[m
+   </PropertyGroup>[m
+ [m
+[32m+[m[32m  <ItemGroup>[m
+[32m+[m[32m    <Folder Include="Assets\" />[m
+[32m+[m[32m  </ItemGroup>[m
+[32m+[m
+ </Project>[m
+[1mdiff --git a/tests/SecureAssetOps.UnitTests/SecureAssetOps.UnitTests.csproj b/tests/SecureAssetOps.UnitTests/SecureAssetOps.UnitTests.csproj[m
+[1mindex 933d37c..ebafa74 100644[m
+[1m--- a/tests/SecureAssetOps.UnitTests/SecureAssetOps.UnitTests.csproj[m
+[1m+++ b/tests/SecureAssetOps.UnitTests/SecureAssetOps.UnitTests.csproj[m
+[36m@@ -17,4 +17,8 @@[m
+     </PackageReference>[m
+   </ItemGroup>[m
+ [m
+[32m+[m[32m  <ItemGroup>[m
+[32m+[m[32m    <ProjectReference Include="..\..\src\SecureAssetOps.Domain\SecureAssetOps.Domain.csproj" />[m
+[32m+[m[32m  </ItemGroup>[m
+[32m+[m
+ </Project>[m
