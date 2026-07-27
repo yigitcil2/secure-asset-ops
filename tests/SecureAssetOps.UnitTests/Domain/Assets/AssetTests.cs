@@ -93,4 +93,138 @@ public sealed class AssetTests
 
         Assert.Equal(id, domainEvent.AssetId);
     }
+    
+    private static Asset CreateAvailableAsset()
+    {
+        return Asset.Register(
+            Guid.NewGuid(),
+            "AST-0001",
+            "Dell Latitude Laptop",
+            "SN-123456"
+            );
+    }
+    [Fact]
+    public void SendToMaintenance_WhenAssetIsAvailable_ShouldSetStatusToMaintenance()
+    {
+        var asset = CreateAvailableAsset();
+        asset.SendToMaintenance();
+        asset.ClearDomainEvents();
+
+        Assert.Throws<InvalidOperationException>(() => asset.SendToMaintenance());
+
+        Assert.Equal(AssetStatus.Maintenance, asset.Status);
+        Assert.Empty(asset.DomainEvents);
+    }
+    [Fact]
+    public void CompleteMaintenance_WhenAssetIsInMaintenance_ShouldSetStatusToAvailable()
+    {
+        var asset = CreateAvailableAsset();
+        asset.SendToMaintenance();
+        asset.ClearDomainEvents();
+        asset.CompleteMaintenance();
+
+        Assert.Equal(AssetStatus.Available, asset.Status);
+
+        AssetMaintenanceCompletedDomainEvent domainEvent =
+        Assert.IsType<AssetMaintenanceCompletedDomainEvent>(
+            Assert.Single(asset.DomainEvents));
+        Assert.Equal(asset.Id, domainEvent.AssetId);
+    }
+    [Fact]
+    public void CompleteMaintenance_WhenAssetIsAvailable_ShouldThrowInvalidOperationException()
+    {
+        var asset = CreateAvailableAsset();
+
+        asset.ClearDomainEvents();
+
+        Assert.Throws<InvalidOperationException>(
+            () => asset.CompleteMaintenance());
+
+        Assert.Equal(AssetStatus.Available, asset.Status);
+        Assert.Empty(asset.DomainEvents);
+    }
+    [Fact]
+    public void AssignToPersonnel_WhenAssetIsAvailable_ShouldAssignAsset()
+    {
+        var asset = CreateAvailableAsset();
+        Guid personnelId = Guid.NewGuid();
+        asset.ClearDomainEvents();
+
+        asset.AssignToPersonnel(personnelId);
+
+        Assert.Equal(AssetStatus.Assigned, asset.Status);
+        Assert.Equal(personnelId, asset.AssignedPersonnelId);
+        AssetAssignedToPersonnelDomainEvent domainEvent = Assert.IsType<AssetAssignedToPersonnelDomainEvent>
+            (Assert.Single(asset.DomainEvents));
+        Assert.Equal(asset.Id, domainEvent.AssetId);
+        Assert.Equal(personalId, domainEvent.PersonnelId);
+    }
+    [Fact]
+    public void AssignToPersonnel_WithEmptyPersonnelId_ShouldThrowArgumentException()
+    {
+        var asset = CreateAvailableAsset();
+        
+        asset.ClearDomainEvents();
+
+        asset.AssignToPersonnel(personnelId);
+        ArgumentException exception = Assert.Throws<ArgumentException>(
+        () => asset.AssignToPersonnel(Guid.Empty));
+
+        Assert.Equal("personnelId", exception.ParamName);
+        Assert.Equal(AssetStatus.Available, asset.Status);
+        Assert.Null(asset.AssignedPersonnelId);
+        Assert.Empty(asset.DomainEvents);
+    }
+    [Fact]
+    public void AssignToPersonnel_WhenAssetIsAlreadyAssigned_ShouldThrowInvalidOperationException()
+    {
+        var asset = CreateAvailableAsset();
+        Guid firstPersonnelId = Guid.NewGuid();
+        Guid secondPersonnelId = Guid.NewGuid();
+        asset.AssignToPersonnel(firstPersonnelId);
+        asset.ClearDomainEvents();
+
+        Assert.Throws<InvalidOperationException>(
+        () => asset.AssignToPersonnel(secondPersonnelId));
+        Assert.Equal(AssetStatus.Assigned, asset.Status);
+        Assert.Equal(firstPersonnelId, asset.AssignedPersonnelId);
+        Assert.Empty(asset.DomainEvents);
+
+    }
+    [Fact]
+    public void ReturnFromPersonnel_WhenAssetIsAssigned_ShouldMakeAssetAvailable()
+    {
+        var asset = CreateAvailableAsset();
+        Guid personnelId = Guid.NewGuid();
+
+        asset.AssignToPersonnel(personnelId);
+        asset.ClearDomainEvents();
+
+        asset.ReturnFromPersonnel();
+
+        Assert.Equal(AssetStatus.Available, asset.Status);
+        Assert.Null(asset.AssignedPersonnelId);
+
+        AssetReturnedFromPersonnelDomainEvent domainEvent =
+            Assert.IsType<AssetReturnedFromPersonnelDomainEvent>(
+                Assert.Single(asset.DomainEvents));
+
+        Assert.Equal(asset.Id, domainEvent.AssetId);
+        Assert.Equal(personnelId, domainEvent.PersonnelId);
+    }
+    [Fact]
+    public void ReturnFromPersonnel_WhenAssetIsAvailable_ShouldThrowInvalidOperationException()
+    {
+        var asset = CreateAvailableAsset();
+
+        asset.ClearDomainEvents();
+
+        Assert.Throws<InvalidOperationException>(
+            () => asset.ReturnFromPersonnel());
+
+        Assert.Equal(AssetStatus.Available, asset.Status);
+        Assert.Null(asset.AssignedPersonnelId);
+        Assert.Empty(asset.DomainEvents);
+    }
+
 }
