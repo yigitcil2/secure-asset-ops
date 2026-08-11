@@ -111,12 +111,8 @@ and recent operations.
 **Architecture Decision Records
 **Git and Conventional Commits
 
-## Solution Structure
-
-## Architecture Decision Records
-
 ## Current Status
 
 The project is currently in the Foundation stage.
 
-## Roadmap
+
