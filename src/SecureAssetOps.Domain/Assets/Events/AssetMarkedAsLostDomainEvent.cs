@@ -2,7 +2,7 @@ using SecureAssetOps.Domain.Common;
 
 namespace SecureAssetOps.Domain.Assets.Events;
 
-public sealed record AssetReturnedFromPersonnelDomainEvent(
+public sealed record AssetMarkedAsLostDomainEvent(
     Guid AssetId,
-    Guid PersonnelId)
+    Guid? PreviousPersonnelId)
     : IDomainEvent;
