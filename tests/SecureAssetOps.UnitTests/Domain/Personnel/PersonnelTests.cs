@@ -127,4 +127,68 @@ public sealed class PersonnelTests
             id,
             domainEvent.PersonnelId);
     }
+    [Fact]  
+    public void Deactivate_WhenPersonnelIsActive_ShouldSetStatusToInactive()
+    {
+        var personnel = CreateActivePersonnel();
+        personnel.ClearDomainEvents();
+        personnel.Deactivate();
+
+        Assert.Equal(PersonnelStatus.Inactive, personnel.Status);
+
+        PersonnelDeactivatedDomainEvent domainEvent = Assert.IsType<PersonnelDeactivatedDomainEvent>(
+            Assert.Single(personnel.DomainEvents));
+
+        Assert.Equal(personnel.Id, domainEvent.PersonnelId);
+    }
+    [Fact]
+    public void Deactivate_WhenPersonnelIsInactive_ShouldThrowInvalidOperationException()
+    {
+        var personnel = CreateActivePersonnel();
+
+        personnel.Deactivate();
+        personnel.ClearDomainEvents();
+
+        Action act = () => personnel.Deactivate();
+
+        Assert.Throws<InvalidOperationException>(act);
+
+        Assert.Equal(
+            PersonnelStatus.Inactive,
+            personnel.Status);
+
+        Assert.Empty(personnel.DomainEvents);
+    }
+    [Fact]
+    public void Reactivate_WhenPersonnelIsInactive_ShouldSetStatusToActive()
+    {
+        var personnel = CreateActivePersonnel();
+
+        personnel.Deactivate();
+        personnel.ClearDomainEvents();
+
+        personnel.Reactivate();
+
+        Assert.Equal(
+            PersonnelStatus.Active,
+            personnel.Status);
+
+        PersonnelReactivatedDomainEvent domainEvent =
+            Assert.IsType<PersonnelReactivatedDomainEvent>(
+                Assert.Single(personnel.DomainEvents));
+
+        Assert.Equal(
+            personnel.Id,
+            domainEvent.PersonnelId);
+    }
+    private static PersonnelAggregate CreateActivePersonnel()
+    {
+        return PersonnelAggregate.Register(
+            Guid.NewGuid(),
+            "EMP-0012",
+            "Ahmet Yılmaz",
+            "ahmet.yilmaz@company.com");
+    }
+
+
 }
