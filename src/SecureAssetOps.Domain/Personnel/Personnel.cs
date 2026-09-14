@@ -74,4 +74,32 @@ public sealed class Personnel : AggregateRoot
 
         return personnel;
     }
+
+    public void Deactivate()
+    {
+        if (Status != PersonnelStatus.Active)
+        {
+            throw new InvalidOperationException(
+                $"Personnel in '{Status}' status cannot be deactivated.");
+        }
+
+        Status = PersonnelStatus.Inactive;
+
+        RaiseDomainEvent(
+            new PersonnelDeactivatedDomainEvent(Id));
+    }
+
+    public void Reactivate()
+    {
+        if (Status != PersonnelStatus.Inactive)
+        {
+            throw new InvalidOperationException(
+                $"Personnel in '{Status}' status cannot be reactivated.");
+        }
+
+        Status = PersonnelStatus.Active;
+
+        RaiseDomainEvent(
+            new PersonnelReactivatedDomainEvent(Id));
+    }
 }
